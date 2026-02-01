@@ -1,0 +1,18 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 每天 UTC 23:00（北京时间早上7:00）
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Fork
+        uses: tgymnich/fork-sync@v1.7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ZhuLinsen  # 原始仓库所有者
+          repo: daily_stock_analysis  # 原始仓库名
+          branch: main  # 要同步的分支
